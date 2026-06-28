@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vince and Sophia's Wedding Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Questrial&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Questrial', sans-serif;
+      background: #FAFAF8;
+      color: #3A3A38;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      max-width: 460px;
+      height: auto;
+      margin: 0 auto 3rem;
+      border-radius: 4px;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1.3;
+      color: #2A2A28;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #555;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .details {
+      text-align: center;
+      padding: 0 1.5rem 3rem;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    .details p + p { margin-top: 0.25rem; }
+
+    .details .location {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.35em;
+      text-align: left;
+    }
+
+    .extra {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    .extra h2 {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: normal;
+      color: #888;
+      margin-bottom: 0.6rem;
+    }
+
+    .extra ul {
+      display: inline-block;
+      text-align: left;
+      list-style: disc;
+      padding-left: 1.2em;
+    }
+
+    .extra li + li {
+      margin-top: 0.4rem;
+    }
+
+    .directions {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      text-align: center;
+    }
+
+    .directions h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2rem;
+      color: #2A2A28;
+      margin-bottom: 1.5rem;
+    }
+
+    .map {
+      aspect-ratio: 4 / 3;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #E5E5E0;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .directions a {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #3A3A38;
+      text-decoration: none;
+      border-bottom: 1px solid #BBB;
+      padding-bottom: 1px;
+    }
+
+    .directions a:hover {
+      border-bottom-color: #3A3A38;
+    }
+
+    .directions .route {
+      margin-top: 1.5rem;
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #666;
+    }
+
+    .directions .route strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: normal;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #E5E5E0;
+      max-width: 120px;
+      margin: 0 auto 3rem;
+    }
+
+    .rsvp {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .rsvp h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #2A2A28;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #DDD;
+      background: #FFF;
+      font-family: 'Questrial', sans-serif;
+      font-size: 1rem;
+      color: #3A3A38;
+      border-radius: 4px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #AAA;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23AAA' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      padding-right: 2.5rem;
+    }
+
+    /* Number stepper */
+    .stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .stepper button {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #DDD;
+      background: #FFF;
+      font-size: 1.3rem;
+      color: #3A3A38;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .stepper button:hover {
+      background: #F0F0EE;
+    }
+
+    .stepper button:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .stepper button:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+
+    .stepper-value {
+      width: 52px;
+      height: 44px;
+      border-top: 1px solid #DDD;
+      border-bottom: 1px solid #DDD;
+      border-left: none;
+      border-right: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Questrial', sans-serif;
+      font-size: 1rem;
+      color: #3A3A38;
+      background: #FFF;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.85rem;
+      margin-top: 0.5rem;
+      background: #3A3A38;
+      color: #FFF;
+      border: none;
+      font-family: 'Questrial', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid #E5E5E0;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: #AAA;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Vince and Sophia's Wedding Celebration!</h1>
+    <p class="intro">We got married on May 15 and are looking forward to celebrating with everyone. Details below!</p>
+  </header>
+
+  <img class="photo" src="images/outside.jpg" alt="Vince and Sophia on their wedding day" width="1200" height="1600">
+
+  <div class="details">
+    <p>Date: Saturday, August 29</p>
+    <p class="location"><span>Location:</span> <span>W73 N410 Greystone Dr.<br>Cedarburg, WI 53012</span></p>
+    <p>Appetizers at 4, dinner at 6, drinks all night.</p>
+  </div>
+
+  <div class="extra">
+    <h2>Additional details</h2>
+    <ul>
+      <li>Dress code: casual. Come as you are! We'll be celebrating outdoors at Vince's parents' house, so be prepared for the weather.</li>
+      <li>Buffet style apps and dinner; plenty of vegan and gluten-free options.</li>
+      <li>No gifts!</li>
+      <li>Park anywhere on the street, there are no parking restrictions. 
+    </ul>
+  </div>
+
+  <div class="directions">
+    <h2>How to get there</h2>
+    <div class="map">
+      <iframe
+        src="https://www.google.com/maps?q=W73+N410+Greystone+Dr,+Cedarburg,+WI+53012&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Map to W73 N410 Greystone Dr, Cedarburg, WI 53012"></iframe>
+    </div>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=W73+N410+Greystone+Dr,+Cedarburg,+WI+53012" target="_blank" rel="noopener">Get directions &rarr;</a>
+    <p class="route"><strong>From Milwaukee:</strong> Take I-43 N to Co Hwy C/Pioneer Rd, exit 89; follow Hwy C to Hwy 181/N Wauwatosa Rd in Cedarburg; take Hwy 181 north about a mile to the police station, turn into the police station, continue through the parking lot and exit on West Point Ct, follow West Point to Greystone Dr and turn right. Alternatively, take 76th St/Wauwatosa Rd/Hwy 181 straight north from Milwaukee.</p>
+    <p class="route"><strong>From Green Bay:</strong> Take I-43 S to Co Hwy C/Pioneer Rd, exit 89 (then follow Milwaukee directions).</p>
+    <p class="route"><strong>From Madison:</strong> Take US-151 N to exit 115, towards Columbus; follow 151 into Columbus; go right (east) on WI-60/16, follow for 60 miles until Cedarburg; turn right (south) onto Hwy 181/Wauwatosa Rd, follow for 3 miles until the police station (then see Milwaukee directions).</p>
+  </div>
+
+  <img class="photo" src="images/rings.jpg" alt="Sophia and Vince holding hands with the bridal bouquet" width="1200" height="1600">
+
+  <hr>
+
+  <div class="rsvp">
+    <h2>RSVP <span style="font-size: 1rem; font-family: 'Questrial', sans-serif; font-style: normal; color: #888;">(by May 1 please)</span></h2>
+
+    <form action="https://formsubmit.co/vinceruzicka@gmail.com" method="POST">
+      <input type="hidden" name="_cc" value="qlxm542h@robot.zapier.com">
+      <input type="hidden" name="_subject" value="New Wedding RSVP!">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="">
+      <input type="text" name="_honey" style="display:none">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="Name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="Email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="attendance">Will You Be Joining Us?</label>
+        <select id="attendance" name="Attendance" required>
+          <option value="" disabled selected>Select your response</option>
+          <option value="Yes">Yes</option>
+          <option value="Maybe">Maybe</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>How many people are you planning to bring (including yourself and kids)?</label>
+        <input type="hidden" id="guestCount" name="Number of Guests" value="1">
+        <div class="stepper">
+          <button type="button" onclick="changeGuests(-1)">−</button>
+          <div class="stepper-value" id="guestDisplay">1</div>
+          <button type="button" onclick="changeGuests(1)">+</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Questions or Comments</label>
+        <textarea id="message" name="Message"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit RSVP</button>
+    </form>
+  </div>
+
+
+  <script>
+    function changeGuests(delta) {
+      var input = document.getElementById('guestCount');
+      var display = document.getElementById('guestDisplay');
+      var current = parseInt(input.value);
+      var next = current + delta;
+      if (next < 1) next = 1;
+      if (next > 20) next = 20;
+      input.value = next;
+      display.textContent = next;
+    }
+  </script>
+
+</body>
+</html>
